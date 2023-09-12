@@ -35,6 +35,7 @@ var UserSchema = new mongoose.Schema(
     salt: String,
     isVerified: {
       type: Boolean,
+      required: true,
       default: false
     }
   },
