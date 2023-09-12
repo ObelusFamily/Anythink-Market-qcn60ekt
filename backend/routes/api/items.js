@@ -59,6 +59,8 @@ router.get("/", auth.optional, function(req, res, next) {
   ])
     .then(function(results) {
       var seller = results[0];
+
+      console.log(JSON.stringify(seller));
       var favoriter = results[1];
 
       if (seller) {
