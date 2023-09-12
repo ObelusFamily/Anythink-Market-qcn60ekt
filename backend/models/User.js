@@ -32,7 +32,12 @@ var UserSchema = new mongoose.Schema(
     favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: "Item" }],
     following: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
     hash: String,
-    salt: String
+    salt: String,
+    isVerified: {
+      type: mongoose.Schema.Types.Boolean,
+      required: true,
+      default: false
+    }
   },
   { timestamps: true }
 );
@@ -83,6 +88,7 @@ UserSchema.methods.toProfileJSONFor = function(user) {
   return {
     username: this.username,
     bio: this.bio,
+    isVerified: this.isVerified,
     image:
       this.image || "https://static.productionready.io/images/smiley-cyrus.jpg",
     following: user ? user.isFollowing(this._id) : false
